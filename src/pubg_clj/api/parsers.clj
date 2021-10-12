@@ -207,22 +207,24 @@
   :pubg.season.stats/win-ratio            {:from [:win-ratio]},
   :pubg.season.stats/rounds-played        {:from [:rounds-played]}})
 
-(defn- pack-game-mode-stats
-  [[game-mode-key stats-map]]
-  (assoc stats-map :game-mode (name game-mode-key)))
+;; (defn- pack-game-mode-stats
+;;   [[game-mode-key stats-map]]
+;;   (assoc stats-map :game-mode (name game-mode-key)))
 
 (defparser player-season-stats-parse
   {:pubg.player/id    {:from [:data :relationships :player :data :id]}
    :pubg.player/season-stats {:from [:data :attributes :game-mode-stats]
-                              :using #(let [stats (map pack-game-mode-stats %)]
-                                        (mapv season-stats-parse stats))}})
+                              ;; :using #(let [stats (map pack-game-mode-stats %)]
+                              ;;           (mapv season-stats-parse stats))
+                              }})
 
 (defparser
  player-season-ranked-stats-parse
- {:pubg.player/id                  {:from [:data :relationships :player :data :id]},
+ {:pubg.player/id           {:from [:data :relationships :player :data :id]},
   :pubg.player/season-ranked-stats {:from [:data :attributes :ranked-game-mode-stats]
-                             :using #(let [stats (map pack-game-mode-stats %)]
-                                       (mapv season-ranked-stats-parse stats))}})
+                             ;; :using #(let [stats (map pack-game-mode-stats %)]
+                             ;;           (mapv season-ranked-stats-parse stats))
+                                    }})
 
 (defparser telemetry-common-parse
   {:pubg.match.telemetry.common/is-game {:from [:is-game]}})
