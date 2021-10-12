@@ -95,6 +95,10 @@
   [player-id season-id]
   (str "players/" player-id "/seasons/" season-id "/ranked"))
 
+(defn- tournaments-endpoint
+  ([] "tournaments")
+  ([tournament-id]
+   (str "tournaments/" tournament-id)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Status
 
@@ -286,3 +290,22 @@
            :endpoint (season-ranked-stats-endpoint id season-id)})
          :body
          p/player-season-ranked-stats-parse)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Tournaments
+
+(defn fetch-tournament-list
+  ""
+  []
+  (->> (pubg-fetch {:endpoint (tournaments-endpoint)})
+       :body
+       ;; p/tournament-list-parse
+       ))
+
+(defn fetch-tournament
+  ""
+  [tournament-id]
+  (->> (pubg-fetch {:endpoint (tournaments-endpoint tournament-id)})
+       :body
+       ;; p/tournament-parse
+       ))
