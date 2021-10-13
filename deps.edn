@@ -1,14 +1,13 @@
-{:paths ["src"]
- :deps {org.clojure/core.async {:mvn/version "0.4.490"}
-        clj-http/clj-http {:mvn/version "3.9.1"}
-        cheshire/cheshire {:mvn/version "5.8.1"}
-        camel-snake-kebab/camel-snake-kebab {:mvn/version "0.4.0"}
-        }
-
- :aliases
- {:dev  {:extra-deps {datascript/datascript {:mvn/version "0.18.2"}}}
-  :test {:extra-paths ["test"]
-         :extra-deps {com.cognitect/test-runner
-                      {:git/url "https://github.com/cognitect-labs/test-runner.git"
-                       :sha "209b64504cb3bd3b99ecfec7937b358a879f55c1"}}
-         :main-opts ["-m" "cognitect.test-runner"]}}}
+{:aliases {:dev {:extra-deps {datascript/datascript {:mvn/version "0.18.2"}}},
+           :test {:extra-deps
+                    {com.cognitect/test-runner
+                       {:git/url
+                          "https://github.com/cognitect-labs/test-runner.git",
+                        :sha "209b64504cb3bd3b99ecfec7937b358a879f55c1"}},
+                  :extra-paths ["test"],
+                  :main-opts ["-m" "cognitect.test-runner"]}},
+ :deps {camel-snake-kebab/camel-snake-kebab {:mvn/version "0.4.0"},
+        cheshire/cheshire {:mvn/version "5.8.1"},
+        clj-http/clj-http {:mvn/version "3.9.1"},
+        org.clojure/core.async {:mvn/version "0.4.490"}},
+ :paths ["src"]}

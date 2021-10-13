@@ -11,7 +11,7 @@ Add this project as a git dependency to your `deps.edn` file:
 ```Clojure
 {:deps
  {redbeardymcgee/pubg-clj {:git/url "https://github.com/redbeardymcgee/pubg-clj"
-                    :sha     "b34f6ffd49cb4f09d7d32e510059fcb23558c4e6"}}}
+                           :sha     "b34f6ffd49cb4f09d7d32e510059fcb23558c4e6"}}}
 ```
 
 (See [this guide][4] for reference.)
@@ -85,7 +85,7 @@ Here is an example:
 (require '[datascript.core :as d]
          '[pubg-clj.omnigen :as o]
          '[pubg-clj.api.omni :refer [pubg-omni]])
-         
+
 (def conn
   (let [schema (o/datascript-schema pubg-omni)]
     (d/create-conn schema)))
@@ -118,10 +118,10 @@ connection, and totaling his kills:
 (def matches
   (pubg/with-api-key my-api-key
     (pubg/fetch-player-matches player)))
-    
+
 (count matches)
 ;; => 64
-    
+
 (d/transact! conn matches)
 
 (d/q '[:find (sum ?kills) .
